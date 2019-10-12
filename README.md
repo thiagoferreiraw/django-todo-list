@@ -18,3 +18,7 @@ This repo is part of the [devops-experiments](https://github.com/thiagoferreiraw
 ## Running the app
 
 - Run server with `python manage.py runserver`
+
+## Running tests
+
+- Run the tests with `python manage.py test`
