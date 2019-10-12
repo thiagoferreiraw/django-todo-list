@@ -13,6 +13,7 @@ This repo is part of the [devops-experiments](https://github.com/thiagoferreiraw
 
 - Create a virtual env with `mkvirtualenv django-todo-list`
 - Install requirements with `pip install -r requirements`
+- Run migrations with `python manage.py migrate`
 
 ## Running the app
 
