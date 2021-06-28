@@ -22,3 +22,4 @@ This repo is part of the [devops-experiments](https://github.com/thiagoferreiraw
 ## Running tests
 
 - Run the tests with `python manage.py test`
+;
