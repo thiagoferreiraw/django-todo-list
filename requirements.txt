@@ -29,3 +29,5 @@ sqlparse==0.3.0
 toml==0.10.0
 traitlets==4.3.3
 wcwidth==0.1.7
+psycopg2-binary
+dj-database-url
