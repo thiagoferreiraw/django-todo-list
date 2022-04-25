@@ -18,13 +18,20 @@ class TasksTestCase(TestCase):
     def test_task_list(self):
         response = self.client.get("/tasks/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.json()
         self.assertEqual(
-            response.json(),
-            [
-                {"id": 1, "status": False, "title": "Walk the dogs"},
-                {"id": 2, "status": False, "title": "Build spaceship"},
-                {"id": 3, "status": True, "title": "Take out the trash"},
-            ],
+            data,
+            {
+                "count": 3,
+                "next": None,
+                "previous": None,
+                "results": [
+                    {"id": 3, "title": "Take out the trash", "status": True},
+                    {"id": 2, "title": "Build spaceship", "status": False},
+                    {"id": 1, "title": "Walk the dogs", "status": False},
+                ],
+            },
+            data,
         )
 
     def test_task_retrieve(self):
