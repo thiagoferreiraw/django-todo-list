@@ -83,12 +83,13 @@ if os.getenv("DATABASE_URL", None):
     except KeyError:
         replica_urls = []
 
+    DATABASE_ROUTERS = ("multidb.ReplicaRouter",)
     DATABASES = {"default": dj_database_url.parse(database_url)}
+    REPLICA_DATABASES = []
     for idx, url in enumerate(replica_urls):
         DATABASES[f"replica-{idx}"] = dj_database_url.parse(url)
+        REPLICA_DATABASES.append(f"replica-{idx}")
 
-    REPLICA_DATABASES = list(DATABASES.keys())
-    DATABASE_ROUTERS = ("multidb.ReplicaRouter",)
 
 else:
     DATABASES = {
