@@ -77,7 +77,19 @@ WSGI_APPLICATION = "app.wsgi.application"
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 if os.getenv("DATABASE_URL", None):
-    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+    database_url = os.environ["DATABASE_URL"]
+    try:
+        replica_urls = os.environ["REPLICA_URLS"].split(",")
+    except KeyError:
+        replica_urls = []
+
+    DATABASES = {"default": dj_database_url.parse(database_url)}
+    for idx, url in enumerate(replica_urls):
+        DATABASES[f"replica-{idx}"] = dj_database_url.parse(url)
+
+    REPLICA_DATABASES = list(DATABASES.keys())
+    DATABASE_ROUTERS = ("multidb.ReplicaRouter",)
+
 else:
     DATABASES = {
         "default": {
