@@ -22,7 +22,6 @@ class TasksTestCase(TestCase):
         self.assertEqual(
             data,
             {
-                "count": 3,
                 "next": None,
                 "previous": None,
                 "results": [
